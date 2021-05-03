@@ -5,16 +5,22 @@ class InitManager {
   static initCore (app) {
     InitManager.app = app
     InitManager.initLoadRouter()
+    InitManager.loadHttpException()
   }
 
   static initLoadRouter () {
-    const whenLoadModule = (module) => {
+    const whenLoadModule = (module) => { // 加载完文件时的钩子函数
       if (module instanceof Router) {
         InitManager.app.use(module.routes())
       }
     }
     const apiDirectory = `${process.cwd()}/app/api`
     requireDirectory(module, apiDirectory, { visit: whenLoadModule })
+  }
+
+  static loadHttpException () { // 挂在所有异常基类到全局变量中 未使用
+    const errors = require('./httpException')
+    global.errors = errors
   }
 }
 

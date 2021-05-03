@@ -9,6 +9,6 @@ app.use(catchError)
 
 app.use(bodyParser())
 
-InitManager.initCore(app)
+InitManager.initCore(app) // 注册所有的路由
 
 app.listen(3000)
