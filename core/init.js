@@ -5,7 +5,14 @@ class InitManager {
   static initCore (app) {
     InitManager.app = app
     InitManager.initLoadRouter()
-    InitManager.loadHttpException()
+    // InitManager.loadHttpException()
+    InitManager.loadConfig()
+  }
+
+  static loadConfig (path = '') {
+    const configPath = path || process.cwd() + '/config/config.js'
+    const config = require(configPath)
+    global.config = config
   }
 
   static initLoadRouter () {
@@ -19,7 +26,7 @@ class InitManager {
   }
 
   static loadHttpException () { // 挂在所有异常基类到全局变量中 未使用
-    const errors = require('./httpException')
+    const errors = require('./http-exception')
     global.errors = errors
   }
 }
