@@ -5,7 +5,7 @@ class InitManager {
   static initCore (app) {
     InitManager.app = app
     InitManager.initLoadRouter()
-    // InitManager.loadHttpException()
+    InitManager.loadHttpException()
     InitManager.loadConfig()
   }
 
